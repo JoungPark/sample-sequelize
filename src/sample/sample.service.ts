@@ -120,6 +120,7 @@ Project.init(
     },
   },
   {
+    schema: 'sprockets',
     sequelize,
     tableName: "projects",
   }
@@ -142,6 +143,7 @@ User.init(
     },
   },
   {
+    schema: 'sprockets',
     tableName: "users",
     sequelize, // passing the `sequelize` instance is required
   }
@@ -158,6 +160,7 @@ Address.init(
     },
   },
   {
+    schema: 'sprockets',
     tableName: "address",
     sequelize, // passing the `sequelize` instance is required
   }
@@ -185,6 +188,7 @@ const Note: ModelDefined<
     },
   },
   {
+    schema: 'sprockets',
     tableName: 'notes',
   }
 );
@@ -232,4 +236,10 @@ export async function doStuffWithUser() {
   // // Note the `!` null assertion since TS can't know if we included
   // // the model or not
   // console.log(ourUser.projects![0].name);
+}
+
+export async function createSchema(name: string) {
+  const result = await sequelize.createSchema(name, {});
+
+  console.log(result);
 }
